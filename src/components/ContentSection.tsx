@@ -209,14 +209,23 @@ const ContentSection = () => {
         )}
 
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 space-y-4">
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-neon-yellow to-neon-gold hover:from-neon-gold hover:to-neon-amber text-dark-900 font-gaming px-8 py-4 text-lg"
+            className="bg-gradient-to-r from-neon-yellow to-neon-gold hover:from-neon-gold hover:to-neon-amber text-dark-900 font-gaming px-8 py-4 text-lg mr-4"
             onClick={() => window.open('https://www.youtube.com/@Giogioxii', '_blank')}
           >
             <ExternalLink className="mr-2 h-6 w-6" />
             Visita il Canale YouTube
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-dark-900 font-gaming px-8 py-4 text-lg"
+            onClick={() => window.open('https://www.youtube.com/@Giogioxii/videos', '_blank')}
+          >
+            <Play className="mr-2 h-6 w-6" />
+            Guarda i Video
           </Button>
         </div>
       </div>
