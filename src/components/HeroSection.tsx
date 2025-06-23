@@ -49,6 +49,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-pink hover:to-neon-blue text-white font-gaming px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-neon-purple/50"
+            onClick={() => window.open('https://www.youtube.com/@Giogioxii', '_blank')}
           >
             <Youtube className="mr-2 h-6 w-6" />
             Visita il Canale
@@ -57,6 +58,7 @@ const HeroSection = () => {
             variant="outline" 
             size="lg"
             className="border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-dark-900 font-gaming px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.open('https://www.youtube.com/@Giogioxii/videos', '_blank')}
           >
             <Play className="mr-2 h-6 w-6" />
             Guarda i Video
