@@ -57,24 +57,28 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Gaming Colors
+				// New Yellow Theme Colors
 				neon: {
-					purple: '#8B5CF6',
-					pink: '#EC4899',
-					blue: '#3B82F6',
-					cyan: '#06B6D4',
-					green: '#10B981',
+					yellow: '#FFED4E',
+					gold: '#FFD700',
+					amber: '#FFC107',
+					orange: '#FF9800',
 				},
 				dark: {
-					900: '#0F0F23',
-					800: '#16213E',
-					700: '#1E293B',
+					900: '#1A1A1A',
+					800: '#2D2D2D',
+					700: '#404040',
+				},
+				light: {
+					100: '#FFFFFF',
+					200: '#F5F5F5',
+					300: '#E0E0E0',
 				}
 			},
 			backgroundImage: {
-				'gaming-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-				'neon-gradient': 'linear-gradient(45deg, #8B5CF6, #EC4899, #3B82F6)',
-				'cyber-gradient': 'linear-gradient(90deg, #0F0F23 0%, #16213E 50%, #1E293B 100%)',
+				'gaming-gradient': 'linear-gradient(135deg, #FFED4E 0%, #FFD700 100%)',
+				'neon-gradient': 'linear-gradient(45deg, #FFED4E, #FFD700, #FFC107)',
+				'cyber-gradient': 'linear-gradient(90deg, #1A1A1A 0%, #2D2D2D 50%, #404040 100%)',
 			},
 			animation: {
 				'float': 'float 6s ease-in-out infinite',
@@ -89,8 +93,8 @@ export default {
 					'50%': { transform: 'translateY(-20px)' },
 				},
 				glow: {
-					'0%': { boxShadow: '0 0 20px #8B5CF6' },
-					'100%': { boxShadow: '0 0 30px #EC4899, 0 0 40px #3B82F6' },
+					'0%': { boxShadow: '0 0 20px #FFED4E' },
+					'100%': { boxShadow: '0 0 30px #FFD700, 0 0 40px #FFC107' },
 				},
 				slideUp: {
 					'0%': { transform: 'translateY(100px)', opacity: '0' },
