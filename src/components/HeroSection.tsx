@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Youtube, Play, Gamepad2, Code, Zap } from 'lucide-react';
@@ -71,7 +70,7 @@ const HeroSection = () => {
             <div className="flex items-center justify-center mb-3">
               <Youtube className="h-8 w-8 text-neon-purple" />
             </div>
-            <div className="text-2xl font-gaming font-bold gradient-text">1K+</div>
+            <div className="text-2xl font-gaming font-bold gradient-text">250+</div>
             <div className="text-sm text-gray-400">Subscribers</div>
           </div>
           <div className="bg-dark-800/50 backdrop-blur-sm border border-neon-pink/30 rounded-xl p-6 card-glow">
