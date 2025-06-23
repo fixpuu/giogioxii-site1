@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { User, Target, Heart, Lightbulb, Gamepad2, Camera, Code, Music } from 'lucide-react';
+import { User, Target, Heart, Lightbulb, Gamepad2, Camera, Code, Music, MessageSquare, Video, Mic } from 'lucide-react';
 
 const AboutSection = () => {
   const skills = [
@@ -13,9 +13,32 @@ const AboutSection = () => {
 
   const interests = [
     { icon: Gamepad2, name: 'Gaming', desc: 'FPS, RPG, Indie Games' },
-    { icon: Camera, name: 'Content', desc: 'YouTube, Streaming' },
+    { icon: Camera, name: 'Content', desc: 'YouTube, TikTok' },
     { icon: Code, name: 'Tech', desc: 'Hardware, Software' },
     { icon: Music, name: 'Music', desc: 'Electronic, Gaming OSTs' },
+  ];
+
+  const storySteps = [
+    {
+      icon: MessageSquare,
+      title: "Il Nome",
+      content: "Il nome era stato inventato quando avevo creato l'account Epic Games e non sapevo che nome mettere, perché non ci volevo mettere il nome \"GioXi 01\" (fu inventato precedentemente per giocare a Minecraft con gli amici). Dopo un po' con il pensiero mi sono reso conto che di soprannome a volte mi chiamavano \"Giogio\", quindi ho deciso di fare l'unione tra il soprannome Giogio e GioXi 01. Il risultato sarebbe stato \"Giogioxi\" ma dava che il nome era già stato utilizzato quindi ho aggiunto una \"i\" perché mettere 01 sentivo che stava male. Infine il risultato fu \"Giogioxii\" ma ho fatto questo account Epic Games non ancora per portare qualcosa sui social."
+    },
+    {
+      icon: Video,
+      title: "Pubblicazione sui Social",
+      content: "L'inizio fu nel settembre del 2023 pubblicando contenuti su TikTok ma con video molti lunghi e non mi guardava nessuno, perché erano video da 10 minuti in verticale di RL Sideswipe e non erano niente di speciale. Un mese dopo decisi di iniziare a pubblicare su YouTube ma successe più o meno la stessa cosa. Quando ho pubblicato il mio primo shorts su YouTube il mio canale è esploso di views in cui avevo guadagnato 7 iscritti e più di 2000 visualizzazioni che per me erano già moltissime. Prima però insieme al Fixpu (trovate il suo canale nella pagina dei canali consigliati) ho creato il logo che trovate sopra grazie a un sito."
+    },
+    {
+      icon: Mic,
+      title: "Primo Video Parlato",
+      content: "Il primo video parlato fu questo affianco di cui ero molto timido a parlare mentre registravo. A convincermi a farlo fu proprio Fixpu che mi diceva che se io parlassi i tuoi video andranno molto meglio. In questo video parlavo molto casualmente e ben poco, perché non sapevo ancora editare i video. Col tempo ho portato anche molti altri giochi come Fortnite e la timidezza nei video non si sente più"
+    },
+    {
+      icon: Target,
+      title: "Molto Tempo Dopo",
+      content: "Dopo 2 anni (più o meno dipende quando guarderete questo sito) sono cresciuto un po' in generale come iscritti e views. Nell'immagine affianco che rappresenta il grafico di quante visualizzazioni ho fatto da ottobre 2023 fino al giorno d'oggi. Molto probabilmente quando guarderete questo sito le views e gli iscritti saranno cresciuti notevolmente. Io ho molti obiettivi davanti da superare ma con impegno e sacrifici (di tempo) ci scommetto che c'è la farò."
+    }
   ];
 
   return (
@@ -31,34 +54,26 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Story */}
-          <div className="space-y-8">
-            <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-purple/30 card-glow">
+        {/* Story Timeline */}
+        <div className="space-y-8 mb-16">
+          {storySteps.map((step, index) => (
+            <Card key={index} className="bg-dark-800/50 backdrop-blur-sm border-neon-purple/30 card-glow">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl font-gaming">
-                  <User className="h-8 w-8 text-neon-purple" />
-                  La Mia Storia
+                <CardTitle className="flex items-center gap-3 text-2xl font-gaming gradient-text">
+                  <step.icon className="h-8 w-8" />
+                  {step.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
-                <p>
-                  Ciao! Sono Giogioxii, un appassionato content creator che vive e respira 
-                  il mondo del gaming e della tecnologia. La mia avventura è iniziata anni fa 
-                  con una semplice passione per i videogiochi.
-                </p>
-                <p>
-                  Quello che era nato come un hobby si è evoluto in qualcosa di più grande: 
-                  la voglia di condividere esperienze, creare contenuti originali e costruire 
-                  una community di persone che condividono le mie stesse passioni.
-                </p>
-                <p>
-                  Ogni video che creo è un pezzo della mia personalità, un modo per connettermi 
-                  con chi mi segue e per esplorare insieme nuovi mondi virtuali e reali.
-                </p>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">{step.content}</p>
               </CardContent>
             </Card>
+          ))}
+        </div>
 
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column - Goals */}
+          <div className="space-y-8">
             <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-pink/30 card-glow">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl font-gaming">
@@ -137,7 +152,7 @@ const AboutSection = () => {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
-              {['Gaming', 'Content Creator', 'YouTube', 'Tech Enthusiast', 'Community Builder', 'Innovator'].map((tag) => (
+              {['Gaming', 'Content Creator', 'YouTube', 'TikTok', 'Community Builder', 'Innovator'].map((tag) => (
                 <Badge key={tag} variant="outline" className="border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white transition-all duration-300">
                   {tag}
                 </Badge>

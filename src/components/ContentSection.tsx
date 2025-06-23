@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Eye, ThumbsUp, Calendar, ExternalLink, Gamepad2, Monitor, Headphones } from 'lucide-react';
+import { Play, Eye, ThumbsUp, Calendar, ExternalLink, Gamepad2, Monitor, Headphones, MessageCircle } from 'lucide-react';
 
 const ContentSection = () => {
   const [activeTab, setActiveTab] = useState('videos');
@@ -11,67 +11,64 @@ const ContentSection = () => {
   const videos = [
     {
       id: 1,
-      title: "LA MIA SETUP GAMING 2024 - TOUR COMPLETO!",
-      category: "Setup",
+      title: "Video Gaming Highlights",
+      category: "Gaming",
       views: "15K",
       likes: "2.1K",
       date: "2 giorni fa",
-      thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400",
-      duration: "12:34"
+      thumbnail: "https://img.youtube.com/vi/b5HvEky3TfE/maxresdefault.jpg",
+      duration: "12:34",
+      url: "https://youtu.be/b5HvEky3TfE?si=P7Qu2R4Vu3m6cafT"
     },
     {
       id: 2,
-      title: "COME DIVENTARE UN CONTENT CREATOR NEL 2024",
-      category: "Tutorial",
+      title: "Gameplay Epico",
+      category: "Gaming",
       views: "8.5K",
       likes: "1.8K",
       date: "1 settimana fa",
-      thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400",
-      duration: "18:45"
+      thumbnail: "https://img.youtube.com/vi/fHSDyji3O3w/maxresdefault.jpg",
+      duration: "18:45",
+      url: "https://youtu.be/fHSDyji3O3w?si=L-eXthos68TE2_kw"
     },
     {
       id: 3,
-      title: "TOP 10 GIOCHI INDIE CHE DEVI ASSOLUTAMENTE PROVARE",
-      category: "Gaming",
+      title: "Contenuto Speciale",
+      category: "Content",
       views: "12K",
       likes: "2.5K",
       date: "2 settimane fa",
-      thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400",
-      duration: "22:18"
+      thumbnail: "https://img.youtube.com/vi/M-uPiNEez8c/maxresdefault.jpg",
+      duration: "22:18",
+      url: "https://youtu.be/M-uPiNEez8c?si=HN54sxf8-cLbDQu9"
     },
     {
       id: 4,
-      title: "REAZIONE AI TRAILER DEI GIOCHI PIÙ ATTESI 2024",
-      category: "Reazioni",
+      title: "Gaming Content",
+      category: "Gaming",
       views: "20K",
       likes: "3.2K",
       date: "3 settimane fa",
-      thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400",
-      duration: "15:22"
+      thumbnail: "https://img.youtube.com/vi/lP-8VuyNJDQ/maxresdefault.jpg",
+      duration: "15:22",
+      url: "https://youtu.be/lP-8VuyNJDQ?si=nnkxg9EZxWKxCb0s"
     }
   ];
 
   const projects = [
     {
-      title: "Gaming Setup Guide",
-      description: "Una guida completa per creare la setup gaming perfetta con qualsiasi budget",
-      tech: ["Video Editing", "Motion Graphics", "Sound Design"],
-      link: "#",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400"
-    },
-    {
       title: "Community Discord",
-      description: "Server Discord attivo con oltre 500 membri per condividere gaming e tech",
-      tech: ["Community Management", "Bot Development", "Event Planning"],
-      link: "#",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400"
+      description: "Server Discord attivo con la community per condividere gaming, contenuti e momenti divertenti insieme",
+      tech: ["Community Management", "Gaming", "Social"],
+      link: "https://discord.gg/9T9zbyp8",
+      image: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=400"
     },
     {
-      title: "Podcast Gaming",
-      description: "Podcast settimanale sui trend del gaming e interviste ad altri creator",
-      tech: ["Audio Production", "Interviewing", "Content Strategy"],
-      link: "#",
-      image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400"
+      title: "Canale WhatsApp",
+      description: "Seguimi sul canale WhatsApp per aggiornamenti rapidi, anteprime e contenuti esclusivi",
+      tech: ["Updates", "Exclusive Content", "Community"],
+      link: "https://whatsapp.com/channel/0029VaOVoAJ8vd1PQUKdFV27",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400"
     }
   ];
 
@@ -112,8 +109,8 @@ const ContentSection = () => {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              <Monitor className="mr-2 h-4 w-4" />
-              Progetti
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Community
             </Button>
           </div>
         </div>
@@ -130,7 +127,11 @@ const ContentSection = () => {
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <Button size="lg" className="bg-neon-purple hover:bg-neon-pink rounded-full">
+                    <Button 
+                      size="lg" 
+                      className="bg-neon-purple hover:bg-neon-pink rounded-full"
+                      onClick={() => window.open(video.url, '_blank')}
+                    >
                       <Play className="h-6 w-6" />
                     </Button>
                   </div>
@@ -168,7 +169,7 @@ const ContentSection = () => {
         )}
 
         {activeTab === 'projects' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {projects.map((project, index) => (
               <Card key={index} className="bg-dark-800/50 backdrop-blur-sm border-neon-pink/30 card-glow overflow-hidden group hover:scale-105 transition-all duration-300">
                 <div className="relative">
@@ -193,9 +194,13 @@ const ContentSection = () => {
                       </Badge>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white"
+                    onClick={() => window.open(project.link, '_blank')}
+                  >
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Scopri di più
+                    Unisciti
                   </Button>
                 </CardContent>
               </Card>
@@ -205,7 +210,11 @@ const ContentSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <Button size="lg" className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-pink hover:to-neon-blue text-white font-gaming px-8 py-4 text-lg">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-pink hover:to-neon-blue text-white font-gaming px-8 py-4 text-lg"
+            onClick={() => window.open('https://www.youtube.com/@Giogioxii', '_blank')}
+          >
             <ExternalLink className="mr-2 h-6 w-6" />
             Visita il Canale YouTube
           </Button>

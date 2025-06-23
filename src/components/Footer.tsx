@@ -1,5 +1,5 @@
 
-import { Youtube, Instagram, Twitter, MessageCircle, Heart, ArrowUp } from 'lucide-react';
+import { Youtube, Instagram, MessageCircle, Heart, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -11,9 +11,9 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Youtube, href: 'https://www.youtube.com/@Giogioxii', label: 'YouTube' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: MessageCircle, href: '#', label: 'Discord' },
+    { icon: Instagram, href: 'https://www.instagram.com/giogioxii?igsh=YjFscjB1azIwdnJs&utm_source=qr', label: 'Instagram' },
+    { icon: MessageCircle, href: 'https://www.tiktok.com/@giogioxiiofficial?_t=ZN-8xRlO6lKp54&_r=1', label: 'TikTok' },
+    { icon: MessageCircle, href: 'https://discord.gg/9T9zbyp8', label: 'Discord' },
   ];
 
   return (

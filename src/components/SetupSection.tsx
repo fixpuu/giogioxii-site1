@@ -1,20 +1,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Monitor, Cpu, HardDrive, Headphones, Keyboard, Mouse, Gamepad2, Mic } from 'lucide-react';
+import { Monitor, Headphones, Keyboard, Mouse, Gamepad2, Mic, Camera, ExternalLink } from 'lucide-react';
 
 const SetupSection = () => {
   const setupItems = [
-    {
-      category: "PC Gaming",
-      icon: Cpu,
-      items: [
-        { name: "CPU", spec: "AMD Ryzen 7 5800X", color: "border-red-500" },
-        { name: "GPU", spec: "NVIDIA RTX 4070", color: "border-green-500" },
-        { name: "RAM", spec: "32GB DDR4 3200MHz", color: "border-blue-500" },
-        { name: "Storage", spec: "1TB NVMe SSD", color: "border-purple-500" }
-      ]
-    },
     {
       category: "Periferiche",
       icon: Keyboard,
@@ -26,24 +16,50 @@ const SetupSection = () => {
       ]
     },
     {
-      category: "Audio/Video",
+      category: "Attrezzatura Video",
+      icon: Camera,
+      items: [
+        { 
+          name: "Microfono", 
+          spec: "TONOR Microfono USB", 
+          color: "border-red-500",
+          link: "https://amzn.eu/d/0iDgg7mz"
+        },
+        { 
+          name: "Braccio", 
+          spec: "Braccio per Microfono", 
+          color: "border-orange-500",
+          link: "https://www.amazon.it/Microfono-TONOR..."
+        },
+        { 
+          name: "Telecamera", 
+          spec: "Logitech Webcam", 
+          color: "border-pink-500",
+          link: "https://www.amazon.it/Logitech-Videoc..."
+        },
+        { 
+          name: "Tappetino", 
+          spec: "HoYiXi Tappetino", 
+          color: "border-cyan-500",
+          link: "https://www.amazon.it/HoYiXi-Tappetin..."
+        }
+      ]
+    },
+    {
+      category: "Audio",
       icon: Headphones,
       items: [
         { name: "Cuffie", spec: "Gaming Headset 7.1", color: "border-yellow-500" },
-        { name: "Microfono", spec: "USB Condenser Mic", color: "border-orange-500" },
-        { name: "Webcam", spec: "4K Streaming Camera", color: "border-pink-500" },
         { name: "Monitor", spec: "27\" 144Hz Gaming", color: "border-cyan-500" }
       ]
     }
   ];
 
   const softwareStack = [
+    { name: "CapCut", purpose: "Video Editing", color: "bg-blue-500" },
     { name: "OBS Studio", purpose: "Streaming & Recording", color: "bg-red-500" },
-    { name: "DaVinci Resolve", purpose: "Video Editing", color: "bg-blue-500" },
-    { name: "Audacity", purpose: "Audio Editing", color: "bg-purple-500" },
     { name: "Discord", purpose: "Community", color: "bg-indigo-500" },
-    { name: "Steam", purpose: "Gaming Platform", color: "bg-gray-600" },
-    { name: "Adobe Creative", purpose: "Design", color: "bg-pink-500" }
+    { name: "Steam", purpose: "Gaming Platform", color: "bg-gray-600" }
   ];
 
   return (
@@ -52,7 +68,7 @@ const SetupSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-gaming font-bold gradient-text mb-6">
-            La Mia Setup
+            Il Mio Setup
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             L'hardware e software che utilizzo per creare contenuti di qualità
@@ -74,9 +90,21 @@ const SetupSection = () => {
                   <div key={item.name} className={`p-4 rounded-lg border-2 ${item.color} bg-dark-700/30 hover:bg-dark-700/50 transition-all duration-300 transform hover:scale-105`}>
                     <div className="flex justify-between items-center">
                       <span className="font-gaming text-white">{item.name}</span>
-                      <Badge variant="outline" className="text-xs border-current">
-                        Pro
-                      </Badge>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs border-current">
+                          Pro
+                        </Badge>
+                        {item.link && (
+                          <a 
+                            href={item.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-neon-purple hover:text-neon-pink transition-colors"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                     <p className="text-sm text-gray-400 mt-1">{item.spec}</p>
                   </div>
@@ -94,7 +122,7 @@ const SetupSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
               {softwareStack.map((software) => (
                 <div key={software.name} className="flex items-center gap-4 p-4 bg-dark-700/50 rounded-lg hover:bg-dark-700 transition-all duration-300 transform hover:scale-105">
                   <div className={`w-12 h-12 ${software.color} rounded-lg flex items-center justify-center`}>

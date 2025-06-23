@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Youtube, Instagram, Twitter, Mail, MessageCircle, Send, Heart } from 'lucide-react';
+import { Youtube, Instagram, Mail, MessageCircle, Send, Heart } from 'lucide-react';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -24,23 +24,23 @@ const ContactSection = () => {
     {
       name: 'Instagram',
       icon: Instagram,
-      url: '#',
+      url: 'https://www.instagram.com/giogioxii?igsh=YjFscjB1azIwdnJs&utm_source=qr',
       color: 'hover:text-pink-500',
       bgColor: 'hover:bg-pink-500/20'
     },
     {
-      name: 'Twitter',
-      icon: Twitter,
-      url: '#',
-      color: 'hover:text-blue-500',
-      bgColor: 'hover:bg-blue-500/20'
-    },
-    {
-      name: 'Discord',
+      name: 'TikTok',
       icon: MessageCircle,
-      url: '#',
+      url: 'https://www.tiktok.com/@giogioxiiofficial?_t=ZN-8xRlO6lKp54&_r=1',
       color: 'hover:text-purple-500',
       bgColor: 'hover:bg-purple-500/20'
+    },
+    {
+      name: 'WhatsApp',
+      icon: MessageCircle,
+      url: 'https://whatsapp.com/channel/0029VaOVoAJ8vd1PQUKdFV27',
+      color: 'hover:text-green-500',
+      bgColor: 'hover:bg-green-500/20'
     }
   ];
 
@@ -171,7 +171,7 @@ const ContactSection = () => {
                   <div>
                     <h3 className="font-gaming text-xl gradient-text mb-3">Community</h3>
                     <p className="text-gray-400 text-sm">
-                      Unisciti alla community Discord per chattare in tempo reale e 
+                      Unisciti alla community Discord e al canale WhatsApp per chattare in tempo reale e 
                       partecipare agli eventi speciali!
                     </p>
                   </div>
