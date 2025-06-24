@@ -1,5 +1,4 @@
-
-import { Youtube, Instagram, MessageCircle, Heart, ArrowUp } from 'lucide-react';
+import { Youtube, Instagram, MessageCircle, Heart, ArrowUp, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -75,10 +74,16 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-dark-700">
-          <div className="flex items-center gap-2 text-light-200 text-sm mb-4 md:mb-0">
-            <span>© {currentYear} Giogioxii. Made with</span>
-            <Heart className="h-4 w-4 text-neon-gold" />
-            <span>for the gaming community</span>
+          <div className="flex flex-col md:flex-row items-center gap-4 text-light-200 text-sm mb-4 md:mb-0">
+            <div className="flex items-center gap-2">
+              <span>© {currentYear} Giogioxii. Made with</span>
+              <Heart className="h-4 w-4 text-neon-gold" />
+              <span>for the gaming community</span>
+            </div>
+            <div className="flex items-center gap-2 text-neon-yellow/80">
+              <Code className="h-4 w-4" />
+              <span>Developed by Fixpu</span>
+            </div>
           </div>
           
           <Button
