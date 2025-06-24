@@ -1,18 +1,8 @@
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Youtube, Instagram, Mail, MessageCircle, Send, Heart } from 'lucide-react';
+import { Youtube, Instagram, Mail, MessageCircle, Heart } from 'lucide-react';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
   const socialLinks = [
     {
       name: 'YouTube',
@@ -44,19 +34,6 @@ const ContactSection = () => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
     <section id="contact" className="py-20 px-6 bg-dark-800/30">
       <div className="max-w-7xl mx-auto">
@@ -71,7 +48,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Contact Information */}
           <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-purple/30 card-glow">
             <CardHeader>
               <CardTitle className="text-2xl font-gaming gradient-text flex items-center gap-3">
@@ -80,46 +57,43 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    name="name"
-                    placeholder="Il tuo nome"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="bg-dark-700/50 border-neon-purple/30 text-white placeholder-gray-400"
-                    required
-                  />
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 p-4 bg-dark-700/50 rounded-lg border border-neon-purple/20">
+                  <Mail className="h-6 w-6 text-neon-purple" />
+                  <div>
+                    <p className="text-gray-400 text-sm">Scrivimi sulla mia email:</p>
+                    <a 
+                      href="mailto:gioelebisson@outlook.it"
+                      className="text-white font-gaming hover:text-neon-purple transition-colors"
+                    >
+                      gioelebisson@outlook.it
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="La tua email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="bg-dark-700/50 border-neon-purple/30 text-white placeholder-gray-400"
-                    required
-                  />
+                
+                <div className="flex items-center gap-4 p-4 bg-dark-700/50 rounded-lg border border-neon-blue/20">
+                  <MessageCircle className="h-6 w-6 text-neon-blue" />
+                  <div>
+                    <p className="text-gray-400 text-sm">Contattami su Discord:</p>
+                    <span className="text-white font-gaming">@giogioxii_02984</span>
+                  </div>
                 </div>
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Il tuo messaggio..."
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="bg-dark-700/50 border-neon-purple/30 text-white placeholder-gray-400 min-h-[120px]"
-                    required
-                  />
+                
+                <div className="flex items-center gap-4 p-4 bg-dark-700/50 rounded-lg border border-neon-pink/20">
+                  <Instagram className="h-6 w-6 text-neon-pink" />
+                  <div>
+                    <p className="text-gray-400 text-sm">Inviami un messaggio su Instagram:</p>
+                    <a 
+                      href="https://www.instagram.com/giogioxii"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white font-gaming hover:text-neon-pink transition-colors"
+                    >
+                      @giogioxii
+                    </a>
+                  </div>
                 </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-pink hover:to-neon-blue text-white font-gaming py-6 text-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  <Send className="mr-2 h-5 w-5" />
-                  Invia Messaggio
-                </Button>
-              </form>
+              </div>
             </CardContent>
           </Card>
 
