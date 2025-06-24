@@ -32,12 +32,12 @@ const AboutSection = () => {
     {
       icon: Mic,
       title: "Primo Video Parlato",
-      content: "Il primo video parlato fu questo affianco di cui ero molto timido a parlare mentre registravo. A convincermi a farlo fu proprio Fixpu che mi diceva che se io parlassi i tuoi video andranno molto meglio. In questo video parlavo molto casualmente e ben poco, perché non sapevo ancora editare i video. Col tempo ho portato anche molti altri giochi come Fortnite e la timidezza nei video non si sente più"
+      content: "Il primo video parlato fu un video di Fortnite intitolato che era un video speciale perché ovviamente era la prima volta che parlavo. A convincermi a fare questo video fu proprio Fixpu che mi diceva \"Se tu parlassi i tuoi video andranno meglio\" e c'è da dire che aveva ragione, perché adesso è sulle 30 visualizzazioni (probabilmente quando guarderete questo messaggio si sarà alzato forse). Quando feci quel video ero molto timido nel farlo, perché non ho mai parlato prima d'ora in un video però parlavo molto casualmente e ben poco di cui non sapevo come editare i video. Col tempo ho portato anche molti altri giochi oltre Fortnite di cui la timidezza oramai svanita oltre aver imparato a editare i video."
     },
     {
       icon: Target,
       title: "Molto Tempo Dopo",
-      content: "Dopo 2 anni (più o meno dipende quando guarderete questo sito) sono cresciuto un po' in generale come iscritti e views. Nell'immagine affianco che rappresenta il grafico di quante visualizzazioni ho fatto da ottobre 2023 fino al giorno d'oggi. Molto probabilmente quando guarderete questo sito le views e gli iscritti saranno cresciuti notevolmente. Io ho molti obiettivi davanti da superare ma con impegno e sacrifici (di tempo) ci scommetto che c'è la farò."
+      content: "Dopo 2 anni più o meno (dipende quando guarderete questo sito) sono cresciuto un po' in tutto come iscritti e views. Quando ho iniziato da Ottobre 2023 fino ad oggi nel 2025 i contenuti sono cambiati parecchio e ora a Giugno 2025 sono a 260 iscritti e con 110K views totali fatte solo nel 2025. Non mi sarei mai immaginato arrivare a questo punto e tutto grazie a voi che mi supportate ogni singolo giorno e di sicuro la mia crescita non smetterà. Ho molti obiettivi davanti da raggiungere e da superare ma con impegno e sacrifici (di tempo e denaro) ci scommetto che c'è la farò."
     }
   ];
 
