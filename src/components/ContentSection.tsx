@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -16,7 +15,7 @@ const ContentSection = () => {
       views: "259",
       likes: "15",
       date: "6 mesi fa",
-      thumbnail: "/images/thumbnail1.jpg",
+      thumbnail: "/lovable-uploads/e97c050f-6318-4d44-bedb-ef50ba5bfe2c.png",
       duration: "12:34",
       url: "https://youtu.be/b5HvEky3TfE?si=P7Qu2R4Vu3m6cafT"
     },
@@ -27,7 +26,7 @@ const ContentSection = () => {
       views: "243",
       likes: "12",
       date: "1 anno fa",
-      thumbnail: "/images/thumbnail2.jpg",
+      thumbnail: "/lovable-uploads/e9e2d2d3-dcc5-4125-9517-3737882c9cd1.png",
       duration: "18:45",
       url: "https://youtu.be/fHSDyji3O3w?si=L-eXthos68TE2_kw"
     },
@@ -38,7 +37,7 @@ const ContentSection = () => {
       views: "204",
       likes: "18",
       date: "3 mesi fa",
-      thumbnail: "/images/thumbnail3.jpg",
+      thumbnail: "/lovable-uploads/8aebe1e5-117b-42a5-8c65-7bcb9cc06e4c.png",
       duration: "22:18",
       url: "https://youtu.be/M-uPiNEez8c?si=HN54sxf8-cLbDQu9"
     },
@@ -49,7 +48,7 @@ const ContentSection = () => {
       views: "142",
       likes: "8",
       date: "1 anno fa",
-      thumbnail: "/images/thumbnail4.jpg",
+      thumbnail: "/lovable-uploads/ada98f74-2957-4771-94c8-fb9569bef701.png",
       duration: "15:22",
       url: "https://youtu.be/lP-8VuyNJDQ?si=nnkxg9EZxWKxCb0s"
     }
