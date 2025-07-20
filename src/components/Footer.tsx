@@ -80,7 +80,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2 text-neon-yellow/80">
               <Code className="h-4 w-4" />
-              <span>Developed by Fixpu</span>
+              <span>Developed by Nexivo | nexivo.vercel.app</span>
             </div>
           </div>
           
