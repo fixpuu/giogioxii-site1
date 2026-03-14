@@ -1,162 +1,191 @@
+import { useEffect, useRef, useState } from 'react';
+import { Target, Heart, Lightbulb, Gamepad2, Camera, Code, Music, MessageSquare, Video, Mic } from 'lucide-react';
+import ParticlesBg from '@/components/ParticlesBg';
+import MatrixRain from './MatrixRain';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { User, Target, Heart, Lightbulb, Gamepad2, Camera, Code, Music, MessageSquare, Video, Mic } from 'lucide-react';
+const STORY = [
+  {
+    icon: MessageSquare,
+    title: 'Il Nome',
+    content:
+      'Il nome era stato inventato quando avevo creato l\'account Epic Games. Non sapevo che nome mettere, perché non volevo usare "GioXi 01". Dopo un po\' ho pensato: di soprannome mi chiamavano "Giogio", quindi ho fatto l\'unione tra Giogio e GioXi 01. Il risultato fu "Giogioxi", ma quel nome era già usato — ho aggiunto una "i" e nacque "Giogioxii".',
+    accent: '#FFD700',
+  },
+  {
+    icon: Video,
+    title: 'Pubblicazione sui Social',
+    content:
+      'L\'inizio fu a settembre 2023 con contenuti su TikTok. Un mese dopo iniziai su YouTube. Il mio primo Shorts esplose: 7 iscritti e 2000+ views in poco tempo. Prima di tutto però, insieme a Fixpu, avevamo creato il logo che trovate sul sito.',
+    accent: '#FF0000',
+  },
+  {
+    icon: Mic,
+    title: 'Primo Video Parlato',
+    content:
+      'Il primo video parlato era su Fortnite. A convincermi fu Fixpu: "Se tu parlassi, i tuoi video andranno meglio" — aveva ragione. Ero timido, parlavo casuale, ma col tempo la timidezza è svanita e ho imparato a editare sempre meglio.',
+    accent: '#5865F2',
+  },
+  {
+    icon: Target,
+    title: 'Oggi e Domani',
+    content:
+      'Da ottobre 2023 ad oggi i contenuti sono cambiati tantissimo. A giugno 2025 sono a 420+ iscritti e con 110K+ views fatte solo nel 2025. Non mi sarei mai immaginato arrivare a questo punto — e non mi fermo.',
+    accent: '#4ade80',
+  },
+];
+
+const INTERESTS = [
+  { icon: Gamepad2, name: 'Gaming', desc: 'FPS, RPG, Indie Games', accent: '#FFD700' },
+  { icon: Camera, name: 'Content', desc: 'YouTube, TikTok', accent: '#FF0000' },
+  { icon: Code, name: 'Tech', desc: 'Hardware, Software', accent: '#60a5fa' },
+  { icon: Music, name: 'Music', desc: 'Electronic, Gaming OSTs', accent: '#a78bfa' },
+];
+
+const SKILLS = [
+  { name: 'Content Creation', level: 90, color: '#FFD700' },
+  { name: 'Video Editing', level: 85, color: '#FFA500' },
+  { name: 'Gaming', level: 95, color: '#4ade80' },
+  { name: 'Storytelling', level: 80, color: '#60a5fa' },
+];
 
 const AboutSection = () => {
-  const skills = [
-    { name: 'Content Creation', level: 90, color: 'bg-neon-purple' },
-    { name: 'Video Editing', level: 85, color: 'bg-neon-pink' },
-    { name: 'Gaming', level: 95, color: 'bg-neon-blue' },
-    { name: 'Storytelling', level: 80, color: 'bg-neon-cyan' },
-  ];
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
 
-  const interests = [
-    { icon: Gamepad2, name: 'Gaming', desc: 'FPS, RPG, Indie Games' },
-    { icon: Camera, name: 'Content', desc: 'YouTube, TikTok' },
-    { icon: Code, name: 'Tech', desc: 'Hardware, Software' },
-    { icon: Music, name: 'Music', desc: 'Electronic, Gaming OSTs' },
-  ];
-
-  const storySteps = [
-    {
-      icon: MessageSquare,
-      title: "Il Nome",
-      content: "Il nome era stato inventato quando avevo creato l'account Epic Games e non sapevo che nome mettere, perché non ci volevo mettere il nome \"GioXi 01\" (fu inventato precedentemente per giocare a Minecraft con gli amici). Dopo un po' con il pensiero mi sono reso conto che di soprannome a volte mi chiamavano \"Giogio\", quindi ho deciso di fare l'unione tra il soprannome Giogio e GioXi 01. Il risultato sarebbe stato \"Giogioxi\" ma dava che il nome era già stato utilizzato quindi ho aggiunto una \"i\" perché mettere 01 sentivo che stava male. Infine il risultato fu \"Giogioxii\" ma ho fatto questo account Epic Games non ancora per portare qualcosa sui social."
-    },
-    {
-      icon: Video,
-      title: "Pubblicazione sui Social",
-      content: "L'inizio fu nel settembre del 2023 pubblicando contenuti su TikTok ma con video molti lunghi e non mi guardava nessuno, perché erano video da 10 minuti in verticale di RL Sideswipe e non erano niente di speciale. Un mese dopo decisi di iniziare a pubblicare su YouTube ma successe più o meno la stessa cosa. Quando ho pubblicato il mio primo shorts su YouTube il mio canale è esploso di views in cui avevo guadagnato 7 iscritti e più di 2000 visualizzazioni che per me erano già moltissime. Prima però insieme al Fixpu (trovate il suo canale nella pagina dei canali consigliati) ho creato il logo che trovate sopra grazie a un sito."
-    },
-    {
-      icon: Mic,
-      title: "Primo Video Parlato",
-      content: "Il primo video parlato fu un video di Fortnite intitolato che era un video speciale perché ovviamente era la prima volta che parlavo. A convincermi a fare questo video fu proprio Fixpu che mi diceva \"Se tu parlassi i tuoi video andranno meglio\" e c'è da dire che aveva ragione, perché adesso è sulle 30 visualizzazioni (probabilmente quando guarderete questo messaggio si sarà alzato forse). Quando feci quel video ero molto timido nel farlo, perché non ho mai parlato prima d'ora in un video però parlavo molto casualmente e ben poco di cui non sapevo come editare i video. Col tempo ho portato anche molti altri giochi oltre Fortnite di cui la timidezza oramai svanita oltre aver imparato a editare i video."
-    },
-    {
-      icon: Target,
-      title: "Molto Tempo Dopo",
-      content: "Dopo 2 anni più o meno (dipende quando guarderete questo sito) sono cresciuto un po' in tutto come iscritti e views. Quando ho iniziato da Ottobre 2023 fino ad oggi nel 2025 i contenuti sono cambiati parecchio e ora a Giugno 2025 sono a 260 iscritti e con 110K views totali fatte solo nel 2025. Non mi sarei mai immaginato arrivare a questo punto e tutto grazie a voi che mi supportate ogni singolo giorno e di sicuro la mia crescita non smetterà. Ho molti obiettivi davanti da raggiungere e da superare ma con impegno e sacrifici (di tempo e denaro) ci scommetto che c'è la farò."
-    }
-  ];
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.05 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section id="about" className="py-20 px-6">
+    <section id="about" ref={ref} className="relative py-24 px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #08090d 0%, #0d0e14 100%)' }}>
+      <ParticlesBg count={18} rockets grid intensity={0.4} />
+      <MatrixRain opacity={0.12} color="#FFD700" />
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-gaming font-bold gradient-text mb-6">
-            Chi Sono
+        {/* Header */}
+        <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p className="font-gaming text-xs tracking-[0.4em] mb-3" style={{ color: 'rgba(255,215,0,0.5)' }}>— CHI SONO —</p>
+          <h2 className="text-4xl md:text-6xl font-gaming font-black mb-4 holo-text" style={{ textShadow: '0 0 40px rgba(255,215,0,0.3)' }}>
+            La Mia Storia
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            La mia storia, le mie passioni e quello che mi guida ogni giorno
-          </p>
+          <p className="text-gray-500 max-w-2xl mx-auto">La mia storia, le mie passioni e quello che mi guida ogni giorno</p>
         </div>
 
-        {/* Story Timeline */}
-        <div className="space-y-8 mb-16">
-          {storySteps.map((step, index) => (
-            <Card key={index} className="bg-dark-800/50 backdrop-blur-sm border-neon-purple/30 card-glow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl font-gaming gradient-text">
-                  <step.icon className="h-8 w-8" />
-                  {step.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 leading-relaxed">{step.content}</p>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Story cards - horizontal scroll on mobile, vertical on desktop */}
+        <div className="space-y-4 mb-16">
+          {STORY.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={i}
+                className={`rounded-2xl p-6 transition-all duration-700 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
+                style={{
+                  transitionDelay: `${i * 120}ms`,
+                  background: 'rgba(255,255,255,0.025)',
+                  border: `1px solid ${s.accent}20`,
+                  backdropFilter: 'blur(10px)',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 0 30px ${s.accent}15`)}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mt-0.5"
+                    style={{ background: `${s.accent}18`, border: `1px solid ${s.accent}35` }}
+                  >
+                    <Icon className="h-5 w-5" style={{ color: s.accent }} />
+                  </div>
+                  <div>
+                    <h3 className="font-gaming text-white text-lg mb-2" style={{ textShadow: `0 0 15px ${s.accent}30` }}>
+                      {s.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{s.content}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Goals */}
-          <div className="space-y-8">
-            <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-pink/30 card-glow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl font-gaming">
-                  <Target className="h-8 w-8 text-neon-pink" />
-                  I Miei Obiettivi
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
-                <div className="flex items-start gap-3">
-                  <Heart className="h-5 w-5 text-neon-pink mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Costruire Community</h4>
-                    <p className="text-sm">Creare uno spazio dove i gamer si sentono a casa</p>
+        {/* Skills + Interests grid */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Skills */}
+          <div
+            className={`rounded-2xl p-6 transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,215,0,0.12)' }}
+          >
+            <h3 className="font-gaming text-lg tracking-wider mb-6" style={{ color: 'rgba(255,215,0,0.7)' }}>SKILLS</h3>
+            <div className="space-y-5">
+              {SKILLS.map((sk) => (
+                <div key={sk.name}>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-white text-sm font-gaming">{sk.name}</span>
+                    <span className="text-xs font-mono" style={{ color: sk.color }}>{sk.level}%</span>
+                  </div>
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.07)' }}>
+                    <div
+                      className="h-full rounded-full transition-all duration-1000 ease-out"
+                      style={{
+                        width: visible ? `${sk.level}%` : '0%',
+                        background: `linear-gradient(90deg, ${sk.color}, ${sk.color}88)`,
+                        boxShadow: `0 0 10px ${sk.color}60`,
+                        transitionDelay: '500ms',
+                      }}
+                    />
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Lightbulb className="h-5 w-5 text-neon-cyan mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Innovare</h4>
-                    <p className="text-sm">Sperimentare nuovi format e contenuti originali</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Gamepad2 className="h-5 w-5 text-neon-blue mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Crescere</h4>
-                    <p className="text-sm">Migliorare costantemente e raggiungere nuovi traguardi</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
           </div>
 
-          {/* Right Column - Skills & Interests */}
-          <div className="space-y-8">
-            {/* Skills */}
-            <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-blue/30 card-glow">
-              <CardHeader>
-                <CardTitle className="text-2xl font-gaming gradient-text">Skills</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-white font-medium">{skill.name}</span>
-                      <span className="text-gray-400">{skill.level}%</span>
+          {/* Interests + Goals */}
+          <div className="space-y-6">
+            {/* Interests */}
+            <div
+              className={`rounded-2xl p-6 transition-all duration-700 delay-400 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,215,0,0.12)' }}
+            >
+              <h3 className="font-gaming text-lg tracking-wider mb-5" style={{ color: 'rgba(255,215,0,0.7)' }}>INTERESSI</h3>
+              <div className="grid grid-cols-2 gap-3">
+                {INTERESTS.map((it) => {
+                  const Icon = it.icon;
+                  return (
+                    <div
+                      key={it.name}
+                      className="rounded-xl p-4 transition-all duration-200 hover:scale-105"
+                      style={{ background: `${it.accent}0d`, border: `1px solid ${it.accent}25` }}
+                    >
+                      <Icon className="h-5 w-5 mb-2" style={{ color: it.accent }} />
+                      <p className="text-white text-sm font-gaming">{it.name}</p>
+                      <p className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{it.desc}</p>
                     </div>
-                    <div className="w-full bg-dark-700 rounded-full h-3">
-                      <div 
-                        className={`h-3 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Goals mini-card */}
+            <div
+              className={`rounded-2xl p-6 transition-all duration-700 delay-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,215,0,0.12)' }}
+            >
+              <h3 className="font-gaming text-lg tracking-wider mb-4" style={{ color: 'rgba(255,215,0,0.7)' }}>OBIETTIVI</h3>
+              <div className="space-y-3">
+                {[
+                  { icon: Heart, text: 'Costruire una community solida e accogliente', color: '#f43f5e' },
+                  { icon: Lightbulb, text: 'Sperimentare nuovi format e contenuti originali', color: '#FFD700' },
+                  { icon: Gamepad2, text: 'Crescere e raggiungere nuovi traguardi ogni mese', color: '#4ade80' },
+                ].map(({ icon: I, text, color }) => (
+                  <div key={text} className="flex items-start gap-3">
+                    <I className="h-4 w-4 mt-0.5 flex-shrink-0" style={{ color }} />
+                    <p className="text-gray-500 text-sm">{text}</p>
                   </div>
                 ))}
-              </CardContent>
-            </Card>
-
-            {/* Interests */}
-            <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-cyan/30 card-glow">
-              <CardHeader>
-                <CardTitle className="text-2xl font-gaming gradient-text">Interessi</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  {interests.map((interest) => (
-                    <div key={interest.name} className="text-center p-4 bg-dark-700/50 rounded-lg hover:bg-dark-700 transition-all duration-300 transform hover:scale-105">
-                      <interest.icon className="h-8 w-8 mx-auto mb-3 text-neon-purple" />
-                      <h4 className="font-gaming text-white mb-1">{interest.name}</h4>
-                      <p className="text-xs text-gray-400">{interest.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {['Gaming', 'Content Creator', 'YouTube', 'TikTok', 'Community Builder', 'Innovator'].map((tag) => (
-                <Badge key={tag} variant="outline" className="border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-white transition-all duration-300">
-                  {tag}
-                </Badge>
-              ))}
+              </div>
             </div>
           </div>
         </div>

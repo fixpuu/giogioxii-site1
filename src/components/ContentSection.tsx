@@ -1,231 +1,254 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Play, Eye, ThumbsUp, Calendar, ExternalLink, Gamepad2, Monitor, Headphones, MessageCircle } from 'lucide-react';
+import { Play, Eye, ThumbsUp, Calendar, ExternalLink, MessageCircle, Youtube } from 'lucide-react';
+import ParticlesBg from '@/components/ParticlesBg';
+import TiltCard from './TiltCard';
+
+const videos = [
+  {
+    id: 1,
+    title: 'SPECIALE 100 ISCRITTI! - Umboxing',
+    category: 'Speciale',
+    views: '259',
+    likes: '15',
+    date: '6 mesi fa',
+    thumbnail: '/lovable-uploads/e97c050f-6318-4d44-bedb-ef50ba5bfe2c.png',
+    duration: '12:34',
+    url: 'https://youtu.be/b5HvEky3TfE?si=P7Qu2R4Vu3m6cafT',
+  },
+  {
+    id: 2,
+    title: 'Come mettere le MOD su EuroTruck Simulator 2 (TUTORIAL)',
+    category: 'Tutorial',
+    views: '243',
+    likes: '12',
+    date: '1 anno fa',
+    thumbnail: '/lovable-uploads/e9e2d2d3-dcc5-4125-9517-3737882c9cd1.png',
+    duration: '18:45',
+    url: 'https://youtu.be/fHSDyji3O3w?si=L-eXthos68TE2_kw',
+  },
+  {
+    id: 3,
+    title: 'SONO DIVENTATO UN FATTORINO DI PIZZE - Ep.1 Pizzadude',
+    category: 'Gaming',
+    views: '204',
+    likes: '18',
+    date: '3 mesi fa',
+    thumbnail: '/lovable-uploads/8aebe1e5-117b-42a5-8c65-7bcb9cc06e4c.png',
+    duration: '22:18',
+    url: 'https://youtu.be/M-uPiNEez8c?si=HN54sxf8-cLbDQu9',
+  },
+  {
+    id: 4,
+    title: 'Ritorno su Asphalt 9 Legends per problemi di volante Ep.1',
+    category: 'Gaming',
+    views: '142',
+    likes: '8',
+    date: '1 anno fa',
+    thumbnail: '/lovable-uploads/ada98f74-2957-4771-94c8-fb9569bef701.png',
+    duration: '15:22',
+    url: 'https://youtu.be/lP-8VuyNJDQ?si=nnkxg9EZxWKxCb0s',
+  },
+];
+
+const community = [
+  {
+    title: 'Community Discord',
+    description: 'Server Discord attivo per condividere gaming, contenuti e momenti divertenti insieme.',
+    tags: ['Community', 'Gaming', 'Social'],
+    link: 'https://discord.gg/9T9zbyp8',
+    accent: '#5865F2',
+    icon: '🎮',
+  },
+  {
+    title: 'Canale WhatsApp',
+    description: 'Seguimi su WhatsApp per aggiornamenti rapidi, anteprime e contenuti esclusivi.',
+    tags: ['Updates', 'Exclusive', 'Community'],
+    link: 'https://whatsapp.com/channel/0029VaOVoAJ8vd1PQUKdFV27',
+    accent: '#25D366',
+    icon: '💬',
+  },
+  {
+    title: 'Giogioxii Plus',
+    description: 'Il mio secondo canale YouTube pieno di contenuti extra, gameplay e molto altro!',
+    tags: ['YouTube', 'Extra Content', 'Gaming'],
+    link: 'https://youtube.com/@giogioxii_plus?si=qwav13GVTNr81tYa',
+    accent: '#FF0000',
+    icon: '▶',
+  },
+];
+
+const CARD_STYLE = {
+  background: 'rgba(255,255,255,0.03)',
+  border: '1px solid rgba(255,215,0,0.15)',
+  backdropFilter: 'blur(10px)',
+};
 
 const ContentSection = () => {
-  const [activeTab, setActiveTab] = useState('videos');
-
-  const videos = [
-    {
-      id: 1,
-      title: "SPECIALE 100 ISCRITTI! - Umboxing",
-      category: "Speciale",
-      views: "259",
-      likes: "15",
-      date: "6 mesi fa",
-      thumbnail: "/lovable-uploads/e97c050f-6318-4d44-bedb-ef50ba5bfe2c.png",
-      duration: "12:34",
-      url: "https://youtu.be/b5HvEky3TfE?si=P7Qu2R4Vu3m6cafT"
-    },
-    {
-      id: 2,
-      title: "Come mettere le MOD su EuroTruck Simulator 2 (TUTORIAL)",
-      category: "Tutorial",
-      views: "243",
-      likes: "12",
-      date: "1 anno fa",
-      thumbnail: "/lovable-uploads/e9e2d2d3-dcc5-4125-9517-3737882c9cd1.png",
-      duration: "18:45",
-      url: "https://youtu.be/fHSDyji3O3w?si=L-eXthos68TE2_kw"
-    },
-    {
-      id: 3,
-      title: "SONO DIVENTATO UN FATTORINO DI PIZZE - Ep.1 Pizzadude",
-      category: "Gaming",
-      views: "204",
-      likes: "18",
-      date: "3 mesi fa",
-      thumbnail: "/lovable-uploads/8aebe1e5-117b-42a5-8c65-7bcb9cc06e4c.png",
-      duration: "22:18",
-      url: "https://youtu.be/M-uPiNEez8c?si=HN54sxf8-cLbDQu9"
-    },
-    {
-      id: 4,
-      title: "Ritorno su Asphalt 9 Legends per problemi di volante Ep.1 (spiego nella descrizione)",
-      category: "Gaming",
-      views: "142",
-      likes: "8",
-      date: "1 anno fa",
-      thumbnail: "/lovable-uploads/ada98f74-2957-4771-94c8-fb9569bef701.png",
-      duration: "15:22",
-      url: "https://youtu.be/lP-8VuyNJDQ?si=nnkxg9EZxWKxCb0s"
-    }
-  ];
-
-  const projects = [
-    {
-      title: "Community Discord",
-      description: "Server Discord attivo con la community per condividere gaming, contenuti e momenti divertenti insieme",
-      tech: ["Community Management", "Gaming", "Social"],
-      link: "https://discord.gg/9T9zbyp8",
-      image: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=400"
-    },
-    {
-      title: "Canale WhatsApp",
-      description: "Seguimi sul canale WhatsApp per aggiornamenti rapidi, anteprime e contenuti esclusivi",
-      tech: ["Updates", "Exclusive Content", "Community"],
-      link: "https://whatsapp.com/channel/0029VaOVoAJ8vd1PQUKdFV27",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400"
-    }
-  ];
+  const [tab, setTab] = useState<'videos' | 'community'>('videos');
 
   return (
-    <section id="content" className="py-20 px-6 bg-dark-800/30">
+    <section id="content" className="relative py-24 px-6" style={{ background: 'linear-gradient(180deg, #08090d 0%, #0a0b10 100%)' }}>
+      <ParticlesBg count={15} rockets={false} grid intensity={0.5} />
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-gaming font-bold gradient-text mb-6">
+          <p className="font-gaming text-xs tracking-[0.4em] mb-3" style={{ color: 'rgba(255,215,0,0.5)' }}>
+            — CONTENT HUB —
+          </p>
+          <h2
+            className="text-4xl md:text-6xl font-gaming font-black mb-4 holo-text"
+            style={{ textShadow: '0 0 40px rgba(255,215,0,0.3)' }}
+          >
             I Miei Contenuti
           </h2>
-          <p className="text-xl text-light-100 max-w-3xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             Esplora i miei video, progetti e tutto quello che creo per la community
           </p>
         </div>
 
-        {/* Tabs */}
+        {/* Tabs with Animated Borders */}
         <div className="flex justify-center mb-12">
-          <div className="bg-dark-800/50 backdrop-blur-sm rounded-full p-2 border border-neon-yellow/30">
-            <Button
-              variant={activeTab === 'videos' ? 'default' : 'ghost'}
-              onClick={() => setActiveTab('videos')}
-              className={`rounded-full px-6 py-3 font-gaming transition-all duration-300 ${
-                activeTab === 'videos' 
-                  ? 'bg-gradient-to-r from-neon-yellow to-neon-gold text-dark-900' 
-                  : 'text-light-200 hover:text-light-100'
-              }`}
-            >
-              <Play className="mr-2 h-4 w-4" />
-              Video
-            </Button>
-            <Button
-              variant={activeTab === 'projects' ? 'default' : 'ghost'}
-              onClick={() => setActiveTab('projects')}
-              className={`rounded-full px-6 py-3 font-gaming transition-all duration-300 ${
-                activeTab === 'projects' 
-                  ? 'bg-gradient-to-r from-neon-yellow to-neon-gold text-dark-900' 
-                  : 'text-light-200 hover:text-light-100'
-              }`}
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Community
-            </Button>
+          <div className="flex rounded-full p-1 gap-1 overflow-hidden" style={{ background: 'rgba(255,215,0,0.07)', border: '1px solid rgba(255,215,0,0.15)' }}>
+            {(['videos', 'community'] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`relative px-8 py-2.5 rounded-full font-gaming text-sm tracking-wider transition-all duration-300 capitalize overflow-hidden ${tab === t ? 'text-[#0a0a0a]' : 'text-orange-400/50 hover:text-orange-400'}`}
+              >
+                {tab === t && <div className="absolute inset-0 animated-border" />}
+                <span className="relative z-10 flex items-center justify-center">
+                  {t === 'videos' ? (
+                    <><Play className="inline h-4 w-4 mr-2" />Video</>
+                  ) : (
+                    <><MessageCircle className="inline h-4 w-4 mr-2" />Community</>
+                  )}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Content */}
-        {activeTab === 'videos' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {videos.map((video) => (
-              <Card key={video.id} className="bg-dark-800/50 backdrop-blur-sm border-neon-yellow/30 card-glow overflow-hidden group hover:scale-105 transition-all duration-300">
-                <div className="relative">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <Button 
-                      size="lg" 
-                      className="bg-neon-yellow hover:bg-neon-gold text-dark-900 rounded-full"
-                      onClick={() => window.open(video.url, '_blank')}
+        {/* Videos grid */}
+        {tab === 'videos' && (
+          <div className="grid md:grid-cols-2 gap-6">
+            {videos.map((v) => (
+              <TiltCard
+                key={v.id}
+                maxTilt={6}
+                glowColor="rgba(255,215,0,0.15)"
+                className="group rounded-2xl overflow-hidden cursor-pointer"
+                style={CARD_STYLE}
+              >
+                {/* Thumbnail */}
+                <div className="relative overflow-hidden h-48">
+                  <img src={v.thumbnail} alt={v.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300"
+                      style={{ background: 'rgba(255,215,0,0.9)' }}
                     >
-                      <Play className="h-6 w-6" />
-                    </Button>
+                      <Play className="h-6 w-6 text-black fill-black" />
+                    </div>
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm">
-                    {video.duration}
-                  </div>
-                  <Badge className="absolute top-2 left-2 bg-neon-yellow text-dark-900">
-                    {video.category}
-                  </Badge>
+                  {/* Duration badge */}
+                  <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded text-xs font-mono bg-black/80 text-white">
+                    {v.duration}
+                  </span>
+                  {/* Category badge */}
+                  <span
+                    className="absolute top-2 left-2 px-3 py-1 rounded-full text-xs font-gaming"
+                    style={{ background: 'rgba(255,215,0,0.9)', color: '#000' }}
+                  >
+                    {v.category}
+                  </span>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="font-gaming text-lg text-light-100 mb-3 line-clamp-2">
-                    {video.title}
+                {/* Info */}
+                <div className="p-5">
+                  <h3 className="font-gaming text-white text-base mb-3 line-clamp-2 group-hover:text-neon-yellow transition-colors">
+                    {v.title}
                   </h3>
-                  <div className="flex items-center justify-between text-sm text-light-200">
+                  <div className="flex items-center justify-between text-xs text-gray-500">
                     <div className="flex items-center gap-4">
                       <span className="flex items-center gap-1">
-                        <Eye className="h-4 w-4" />
-                        {video.views}
+                        <Eye className="h-3.5 w-3.5" />{v.views}
                       </span>
                       <span className="flex items-center gap-1">
-                        <ThumbsUp className="h-4 w-4" />
-                        {video.likes}
+                        <ThumbsUp className="h-3.5 w-3.5" />{v.likes}
                       </span>
                     </div>
                     <span className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {video.date}
+                      <Calendar className="h-3.5 w-3.5" />{v.date}
                     </span>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </TiltCard>
             ))}
           </div>
         )}
 
-        {activeTab === 'projects' && (
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {projects.map((project, index) => (
-              <Card key={index} className="bg-dark-800/50 backdrop-blur-sm border-neon-gold/30 card-glow overflow-hidden group hover:scale-105 transition-all duration-300">
-                <div className="relative">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-gaming text-xl text-light-100 mb-3">
-                    {project.title}
+        {/* Community grid */}
+        {tab === 'community' && (
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {community.map((c) => (
+              <TiltCard
+                key={c.title}
+                maxTilt={10}
+                glowColor={`${c.accent}30`}
+                className="group rounded-3xl p-8 cursor-pointer border transition-all duration-500"
+                style={{ background: 'rgba(255,255,255,0.02)', borderColor: `${c.accent}20` }}
+              >
+                <div onClick={() => window.open(c.link, '_blank')}>
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-xl"
+                    style={{ background: `${c.accent}20`, border: `1px solid ${c.accent}40` }}
+                  >
+                    {c.icon}
+                  </div>
+                  <h3 className="font-gaming text-white text-lg mb-2 group-hover:text-neon-yellow transition-colors">
+                    {c.title}
                   </h3>
-                  <p className="text-light-200 mb-4 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
+                  <p className="text-gray-500 text-sm mb-4 leading-relaxed">{c.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="outline" className="border-neon-amber text-neon-amber text-xs">
-                        {tech}
-                      </Badge>
+                    {c.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-full text-xs font-gaming"
+                        style={{ background: `${c.accent}15`, color: c.accent, border: `1px solid ${c.accent}30` }}
+                      >
+                        {tag}
+                      </span>
                     ))}
                   </div>
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-dark-900"
-                    onClick={() => window.open(project.link, '_blank')}
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
+                  <div className="flex items-center gap-1 text-xs font-gaming" style={{ color: c.accent }}>
+                    <ExternalLink className="h-3.5 w-3.5" />
                     Unisciti
-                  </Button>
-                </CardContent>
-              </Card>
+                  </div>
+                </div>
+              </TiltCard>
             ))}
           </div>
         )}
 
-        {/* CTA */}
-        <div className="text-center mt-16 space-y-4">
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-neon-yellow to-neon-gold hover:from-neon-gold hover:to-neon-amber text-dark-900 font-gaming px-8 py-4 text-lg mr-4"
+        {/* CTAs */}
+        <div className="text-center mt-16 flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            className="group relative overflow-hidden px-8 py-4 rounded-full font-gaming text-base font-bold transition-all duration-300 hover:scale-105"
+            style={{ background: 'linear-gradient(135deg, #FFD700, #FFA500)', color: '#000', boxShadow: '0 0 25px rgba(255,215,0,0.35)' }}
             onClick={() => window.open('https://www.youtube.com/@Giogioxii', '_blank')}
           >
-            <ExternalLink className="mr-2 h-6 w-6" />
-            Visita il Canale YouTube
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-dark-900 font-gaming px-8 py-4 text-lg"
-            onClick={() => window.open('https://www.youtube.com/@Giogioxii/videos', '_blank')}
+            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+            <Youtube className="inline mr-2 h-5 w-5" />
+            Canale Principale
+          </button>
+          <button
+            className="px-8 py-4 rounded-full font-gaming text-base font-bold transition-all duration-300 hover:scale-105"
+            style={{ border: '1px solid rgba(255,215,0,0.3)', color: '#FFD700', background: 'rgba(255,215,0,0.05)' }}
+            onClick={() => window.open('https://youtube.com/@giogioxii_plus', '_blank')}
           >
-            <Play className="mr-2 h-6 w-6" />
-            Guarda i Video
-          </Button>
+            <Youtube className="inline mr-2 h-5 w-5" />
+            Giogioxii Plus
+          </button>
         </div>
       </div>
     </section>

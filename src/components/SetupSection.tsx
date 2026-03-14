@@ -1,161 +1,171 @@
+import { useEffect, useRef, useState } from 'react';
+import { Monitor, Headphones, Keyboard, Camera, Mic, ExternalLink } from 'lucide-react';
+import ParticlesBg from '@/components/ParticlesBg';
+import CountUp from './CountUp';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Monitor, Headphones, Keyboard, Mouse, Gamepad2, Mic, Camera, ExternalLink } from 'lucide-react';
+const SETUP_CATS = [
+  {
+    category: 'Periferiche',
+    icon: Keyboard,
+    accent: '#FFD700',
+    items: [
+      { name: 'Tastiera', spec: 'Mechanical RGB Gaming', link: null },
+      { name: 'Mouse', spec: 'Gaming Mouse 16000 DPI', link: null },
+      { name: 'Controller', spec: 'Xbox Series X Controller', link: null },
+      { name: 'Mousepad', spec: 'RGB Gaming Mousepad XL', link: null },
+    ],
+  },
+  {
+    category: 'Audio & Video',
+    icon: Mic,
+    accent: '#f43f5e',
+    items: [
+      { name: 'Microfono', spec: 'TONOR Microfono USB', link: 'https://amzn.eu/d/0iDgg7mz' },
+      { name: 'Braccio Mic', spec: 'Articolato Pro Arm', link: null },
+      { name: 'Webcam', spec: 'Logitech HD Webcam', link: null },
+      { name: 'Tappetino', spec: 'HoYiXi Tappetino XXL', link: null },
+    ],
+  },
+  {
+    category: 'Display & Audio',
+    icon: Headphones,
+    accent: '#60a5fa',
+    items: [
+      { name: 'Monitor', spec: '27" 144Hz Gaming IPS', link: null },
+      { name: 'Cuffie', spec: 'Gaming Headset 7.1', link: null },
+    ],
+  },
+];
+
+const SOFTWARE = [
+  { name: 'CapCut', purpose: 'Video Editing', color: '#00BFFF', letter: 'C' },
+  { name: 'OBS Studio', purpose: 'Recording & Stream', color: '#8B5CF6', letter: 'O' },
+  { name: 'Discord', purpose: 'Community', color: '#5865F2', letter: 'D' },
+  { name: 'Steam', purpose: 'Gaming Platform', color: '#1b2838', letter: 'S' },
+];
+
+const STATS = [
+  { value: '100+', label: 'Ore di Streaming', color: '#FFD700' },
+  { value: '4K', label: 'Qualità Video', color: '#f43f5e' },
+  { value: '144Hz', label: 'Gaming Smooth', color: '#60a5fa' },
+  { value: '24/7', label: 'Setup Ready', color: '#4ade80' },
+];
 
 const SetupSection = () => {
-  const setupItems = [
-    {
-      category: "Periferiche",
-      icon: Keyboard,
-      items: [
-        { name: "Tastiera", spec: "Mechanical RGB Gaming", color: "border-neon-purple" },
-        { name: "Mouse", spec: "Gaming Mouse 16000 DPI", color: "border-neon-pink" },
-        { name: "Controller", spec: "Xbox Series X Controller", color: "border-neon-blue" },
-        { name: "Pad", spec: "RGB Gaming Mousepad", color: "border-neon-cyan" }
-      ]
-    },
-    {
-      category: "Attrezzatura Video",
-      icon: Camera,
-      items: [
-        { 
-          name: "Microfono", 
-          spec: "TONOR Microfono USB", 
-          color: "border-red-500",
-          link: "https://amzn.eu/d/0iDgg7mz"
-        },
-        { 
-          name: "Braccio", 
-          spec: "Braccio per Microfono", 
-          color: "border-orange-500",
-          link: "https://www.amazon.it/Microfono-TONOR..."
-        },
-        { 
-          name: "Telecamera", 
-          spec: "Logitech Webcam", 
-          color: "border-pink-500",
-          link: "https://www.amazon.it/Logitech-Videoc..."
-        },
-        { 
-          name: "Tappetino", 
-          spec: "HoYiXi Tappetino", 
-          color: "border-cyan-500",
-          link: "https://www.amazon.it/HoYiXi-Tappetin..."
-        }
-      ]
-    },
-    {
-      category: "Audio",
-      icon: Headphones,
-      items: [
-        { name: "Cuffie", spec: "Gaming Headset 7.1", color: "border-yellow-500" },
-        { name: "Monitor", spec: "27\" 144Hz Gaming", color: "border-cyan-500" }
-      ]
-    }
-  ];
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
 
-  const softwareStack = [
-    { name: "CapCut", purpose: "Video Editing", color: "bg-blue-500" },
-    { name: "OBS Studio", purpose: "Streaming & Recording", color: "bg-red-500" },
-    { name: "Discord", purpose: "Community", color: "bg-indigo-500" },
-    { name: "Steam", purpose: "Gaming Platform", color: "bg-gray-600" }
-  ];
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.05 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section id="setup" className="py-20 px-6">
+    <section id="setup" ref={ref} className="relative py-24 px-6" style={{ background: '#0a0b10' }}>
+      <ParticlesBg count={16} rockets grid intensity={0.6} />
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-gaming font-bold gradient-text mb-6">
+        {/* Header */}
+        <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p className="font-gaming text-xs tracking-[0.4em] mb-3" style={{ color: 'rgba(255,215,0,0.5)' }}>— HARDWARE & SOFTWARE —</p>
+          <h2 className="text-4xl md:text-6xl font-gaming font-black mb-4 holo-text" style={{ textShadow: '0 0 40px rgba(255,215,0,0.3)' }}>
             Il Mio Setup
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            L'hardware e software che utilizzo per creare contenuti di qualità
-          </p>
+          <p className="text-gray-500 max-w-2xl mx-auto">L'hardware e il software che utilizzo per creare contenuti di qualità</p>
         </div>
 
-        {/* Hardware Setup */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {setupItems.map((category) => (
-            <Card key={category.category} className="bg-dark-800/50 backdrop-blur-sm border-neon-purple/30 card-glow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl font-gaming gradient-text">
-                  <category.icon className="h-8 w-8" />
-                  {category.category}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {category.items.map((item) => (
-                  <div key={item.name} className={`p-4 rounded-lg border-2 ${item.color} bg-dark-700/30 hover:bg-dark-700/50 transition-all duration-300 transform hover:scale-105`}>
-                    <div className="flex justify-between items-center">
-                      <span className="font-gaming text-white">{item.name}</span>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="text-xs border-current">
-                          Pro
-                        </Badge>
-                        {item.link && (
-                          <a 
-                            href={item.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-neon-purple hover:text-neon-pink transition-colors"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                          </a>
-                        )}
-                      </div>
+        {/* Hardware */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+          {SETUP_CATS.map((cat, i) => {
+            const Icon = cat.icon;
+            return (
+              <div
+                key={cat.category}
+                className={`rounded-2xl p-6 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{
+                  transitionDelay: `${i * 150}ms`,
+                  background: 'rgba(255,255,255,0.025)',
+                  border: `1px solid ${cat.accent}20`,
+                }}
+              >
+                <div className="relative flex items-center gap-3 p-4 rounded-xl overflow-hidden mb-5">
+                  <div className="absolute inset-0 animated-border opacity-20" />
+                  <div className="relative z-10 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${cat.accent}18`, border: `1px solid ${cat.accent}35` }}>
+                      <Icon className="h-4 w-4" style={{ color: cat.accent }} />
                     </div>
-                    <p className="text-sm text-gray-400 mt-1">{item.spec}</p>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Software Stack */}
-        <Card className="bg-dark-800/50 backdrop-blur-sm border-neon-pink/30 card-glow">
-          <CardHeader>
-            <CardTitle className="text-3xl font-gaming gradient-text text-center">
-              Software & Tools
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-              {softwareStack.map((software) => (
-                <div key={software.name} className="flex items-center gap-4 p-4 bg-dark-700/50 rounded-lg hover:bg-dark-700 transition-all duration-300 transform hover:scale-105">
-                  <div className={`w-12 h-12 ${software.color} rounded-lg flex items-center justify-center`}>
-                    <Monitor className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-gaming text-white">{software.name}</h4>
-                    <p className="text-sm text-gray-400">{software.purpose}</p>
+                    <h3 className="font-gaming text-sm tracking-wider" style={{ color: cat.accent }}>{cat.category.toUpperCase()}</h3>
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                <div className="space-y-3">
+                  {cat.items.map((item) => (
+                    <div
+                      key={item.name}
+                      className="flex items-center justify-between p-3 rounded-xl hover:scale-[1.02] transition-transform duration-200"
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                    >
+                      <div>
+                        <p className="text-white text-sm font-gaming">{item.name}</p>
+                        <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{item.spec}</p>
+                      </div>
+                      {item.link && (
+                        <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: cat.accent }}>
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-        {/* Setup Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mt-12">
-          <div className="text-center p-6 bg-dark-800/50 backdrop-blur-sm border border-neon-purple/30 rounded-xl card-glow">
-            <div className="text-3xl font-gaming font-bold gradient-text mb-2">100+</div>
-            <div className="text-gray-400 text-sm">Ore di Streaming</div>
+        {/* Software */}
+        <div
+          className={`rounded-2xl p-6 mb-8 transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,215,0,0.12)' }}
+        >
+          <h3 className="font-gaming text-sm tracking-widest mb-5" style={{ color: 'rgba(255,215,0,0.6)' }}>SOFTWARE & TOOLS</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SOFTWARE.map((s) => (
+              <div
+                key={s.name}
+                className="flex items-center gap-3 p-4 rounded-xl hover:scale-[1.03] transition-transform duration-200"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+              >
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-gaming font-black text-sm flex-shrink-0"
+                  style={{ background: s.color }}
+                >
+                  {s.letter}
+                </div>
+                <div>
+                  <p className="text-white font-gaming text-sm">{s.name}</p>
+                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.purpose}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="text-center p-6 bg-dark-800/50 backdrop-blur-sm border border-neon-pink/30 rounded-xl card-glow">
-            <div className="text-3xl font-gaming font-bold gradient-text mb-2">4K</div>
-            <div className="text-gray-400 text-sm">Qualità Video</div>
-          </div>
-          <div className="text-center p-6 bg-dark-800/50 backdrop-blur-sm border border-neon-blue/30 rounded-xl card-glow">
-            <div className="text-3xl font-gaming font-bold gradient-text mb-2">144Hz</div>
-            <div className="text-gray-400 text-sm">Gaming Smooth</div>
-          </div>
-          <div className="text-center p-6 bg-dark-800/50 backdrop-blur-sm border border-neon-cyan/30 rounded-xl card-glow">
-            <div className="text-3xl font-gaming font-bold gradient-text mb-2">24/7</div>
-            <div className="text-gray-400 text-sm">Setup Ready</div>
-          </div>
+        </div>
+
+        {/* Stats */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 transition-all duration-700 delay-400 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {STATS.map((st) => (
+            <div
+              key={st.label}
+              className="rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-200"
+              style={{ background: `${st.color}0a`, border: `1px solid ${st.color}25` }}
+            >
+              <p className="font-gaming font-black text-2xl mb-1" style={{ color: st.color, textShadow: `0 0 20px ${st.color}40` }}>
+                <CountUp target={parseInt(st.value.replace(/\D/g, ''))} suffix={st.value.replace(/[0-9]/g, '')} trigger={visible} />
+              </p>
+              <p className="text-xs text-gray-600 font-gaming tracking-wide uppercase">{st.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
