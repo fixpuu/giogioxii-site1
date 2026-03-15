@@ -6,8 +6,8 @@ import CountUp from './CountUp';
 /* ── Static data ── */
 const STATS = [
   { icon: Users, value: '420+', label: 'Iscritti' },
-  { icon: Video, value: '500+', label: 'Video' },
-  { icon: Eye, value: '110K+', label: 'Views nel 2025' },
+  { icon: Video, value: '900+', label: 'Video' },
+  { icon: Eye, value: '250K+', label: 'Views nel 2025' },
 ];
 
 /* ── Spaceship SVG inline ── */
@@ -62,13 +62,13 @@ const STARS_DATA = [
   { top: '10%', left: '40%', delay: 14, duration: 4.5, angle: 32 },
 ];
 
-const PARTICLES = Array.from({ length: 40 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
   delay: `${Math.random() * 6}s`,
   duration: `${4 + Math.random() * 5}s`,
-  size: Math.random() > 0.6 ? 2 : 1.5,
+  size: Math.random() > 0.6 ? 2.5 : 2,
 }));
 
 /* ── Mouse spark component ── */
@@ -76,9 +76,16 @@ const MouseSparks = () => {
   const [sparks, setSparks] = useState<{ id: number; x: number; y: number }[]>([]);
   const counterRef = useRef(0);
 
+  const lastPos = useRef({ x: 0, y: 0 });
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
+    // Basic distance throttle to avoid too many state updates
+    const dist = Math.hypot(e.clientX - lastPos.current.x, e.clientY - lastPos.current.y);
+    if (dist < 30) return;
+
+    lastPos.current = { x: e.clientX, y: e.clientY };
     const id = counterRef.current++;
-    setSparks(prev => [...prev.slice(-12), { id, x: e.clientX, y: e.clientY }]);
+    setSparks(prev => [...prev.slice(-8), { id, x: e.clientX, y: e.clientY }]);
     setTimeout(() => setSparks(prev => prev.filter(s => s.id !== id)), 600);
   }, []);
 

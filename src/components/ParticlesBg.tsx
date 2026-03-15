@@ -70,7 +70,7 @@ const ParticlesBg = ({ count = 20, rockets = false, grid = false, intensity = 1 
                 <div
                     key={p.id}
                     className="absolute animate-float"
-                    style={{ left: p.left, top: p.top, animationDelay: p.delay, animationDuration: p.duration }}
+                    style={{ left: p.left, top: p.top, animationDelay: p.delay, animationDuration: p.duration, willChange: 'transform' }}
                 >
                     <div
                         style={{

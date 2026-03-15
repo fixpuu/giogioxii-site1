@@ -4,30 +4,30 @@ import ParticlesBg from '@/components/ParticlesBg';
 
 const MILESTONES = [
     {
-        year: '2021',
+        year: '2023',
         title: "L'Inizio dell'Avventura",
-        description: 'Apertura del canale principale Giogioxii. I primi video, i primi edit e l\'inizio di una grande passione.',
+        description: 'Settembre 2023: primi contenuti su TikTok e YouTube. Nasce il logo e inizia la grande passione.',
         icon: Youtube,
         accent: '#FF0000',
     },
     {
-        year: '2023',
+        year: '2024',
         title: 'I Primi Traguardi',
-        description: 'Raggiunti i primi 100 iscritti e creata una community su Discord con tanti appassionati.',
+        description: 'Raggiunti i primi traguardi significativi e consolidata la community su Discord.',
         icon: Users,
         accent: '#5865F2',
     },
     {
-        year: '2024',
+        year: '2025',
         title: 'Lancio Giogioxii Plus',
         description: 'Apertura del secondo canale dedicato a contenuti extra, dietro le quinte e format sperimentali.',
         icon: Star,
         accent: '#FFD700',
     },
     {
-        year: '2025',
+        year: '2026',
         title: 'Oltre i 420 Iscritti!',
-        description: 'La famiglia cresce. 110K+ views, una community solida e tanti nuovi progetti in cantiere.',
+        description: 'La famiglia continua a crescere con nuovi progetti, traguardi e contenuti sempre più curati.',
         icon: Trophy,
         accent: '#FFD700',
     },
@@ -53,21 +53,21 @@ const TimelineSection = () => {
             className="relative py-24 px-6 overflow-hidden"
             style={{ background: '#08090d' }}
         >
-            <ParticlesBg count={22} rockets grid intensity={0.8} />
-            <div className="scan-line" style={{ opacity: 0.2 }} />
+            <ParticlesBg count={12} rockets grid intensity={0.6} />
+            <div className="scan-line" style={{ opacity: 0.15 }} />
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
                 <div
                     className={`text-center mb-20 transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 >
                     <p className="font-gaming text-xs tracking-[0.4em] mb-3" style={{ color: 'rgba(255,215,0,0.5)' }}>
-                        — LA MIA STORIA —
+                        — I MIEI TRAGUARDI —
                     </p>
                     <h2
                         className="text-4xl md:text-6xl font-gaming font-black holo-text"
                         style={{ textShadow: '0 0 40px rgba(255,215,0,0.3)' }}
                     >
-                        La Mia Storia
+                        Il Mio Percorso
                     </h2>
                 </div>
 

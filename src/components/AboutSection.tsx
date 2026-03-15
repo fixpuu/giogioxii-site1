@@ -29,7 +29,7 @@ const STORY = [
     icon: Target,
     title: 'Oggi e Domani',
     content:
-      'Da ottobre 2023 ad oggi i contenuti sono cambiati tantissimo. A giugno 2025 sono a 420+ iscritti e con 110K+ views fatte solo nel 2025. Non mi sarei mai immaginato arrivare a questo punto — e non mi fermo.',
+      'Da ottobre 2023 ad oggi i contenuti sono cambiati tantissimo. A giugno 2025 ho superato i 900+ video e con 250K+ views fatte nel 2025. Non mi sarei mai immaginato arrivare a questo punto — e non mi fermo.',
     accent: '#4ade80',
   },
 ];
@@ -63,7 +63,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" ref={ref} className="relative py-24 px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #08090d 0%, #0d0e14 100%)' }}>
-      <ParticlesBg count={18} rockets grid intensity={0.4} />
+      <ParticlesBg count={10} rockets grid intensity={0.3} />
       <MatrixRain opacity={0.12} color="#FFD700" />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
